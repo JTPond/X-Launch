@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backColor"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <TextView
+        android:id="@+id/mission1_controls_text1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/backColor"
+        android:text="@string/mission1_controls_text11"
+        android:textColor="@color/colorAccent"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <SeekBar
+        android:id="@+id/mission1_moonDate"
+        style="@android:style/Widget.DeviceDefault.SeekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.58"
+        android:max="38880" />
+
+    <TextView
+        android:id="@+id/mission1_controls_text2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/backColor"
+        android:text="@string/mission1_controls_text21"
+        android:textColor="@color/colorAccent"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TimePicker
+        android:id="@+id/mission1_LaunchTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.43" />
+
+    <Button
+        android:id="@+id/mission1_submit"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:textColor="@color/backColor" />
+</LinearLayout>

@@ -34,7 +34,23 @@
                 <category android:name="android.intent.category.OPENABLE" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddTimeAction"
+        <activity android:name=".Run_mission2_Activity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.RUN" />
+
+                <category android:name="android.intent.category.OPENABLE" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Mission1_controls_Activity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.RUN" />
+
+                <category android:name="android.intent.category.OPENABLE" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".missionBriefing1"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.RUN" />

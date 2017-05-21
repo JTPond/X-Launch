@@ -1,7 +1,24 @@
 <resources>
     <string name="app_name">X-Launch</string>
 
+    <string name="mission1_text1"></string>
+
+    <string name="mission1_controls_text11">Choose Time of Lunar Orbit (Minutes)</string>
+
+    <string name="mission1_controls_text21">Choose Time of Launch</string>
+
+    <string name="mission1_result1">Failure: This is too early in the morning.</string>
+    <string name="mission1_result2">Failure: This is too late at night.</string>
+    <string name="mission1_result3">Failure: You missed the moon wide, by leaving to early.</string>
+    <string name="mission1_result4">Failure: You missed the moon wide, by leaving to late.</string>
+    <string name="mission1_result5">Success! You achieved orbit with the moon!</string>
+
     <string name="addTaETh">Time (Sec)</string>
 
+    <string name="briefing1">In this mission you will be expected to pick the exact time and date for a launch of the Saturn V rocket that will put it in orbit around the moon.
+    Assume that the moon has an orbit of exactly 27 days and that at midnight 00:00 it is directly over the launch site.
+        You will need to launch at a time that will put you in the vicinity of the moon 51 hours and 49 minutes later.
+    Can you do it?
+    Don\'t think too hard; it\'s only rocket science.</string>
 
 </resources>

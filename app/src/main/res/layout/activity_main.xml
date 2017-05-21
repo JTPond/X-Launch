@@ -1,29 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backColor"
     tools:context="com.example.jpond.x_launch.MainActivity">
 
 
     <ScrollView
+        android:id="@+id/mainScroll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="7dp"
         tools:layout_editor_absoluteY="183dp">
 
         <LinearLayout
+            android:id="@+id/mainLay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/mission1_main"
+                android:tag="mission1"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="370dp"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:onClick="gotoMission1"
+                android:text="Start Mission 1"
+                android:textColor="@color/backColor"
+                android:visibility="visible"
+                tools:layout_editor_absoluteX="117dp"
+                tools:layout_editor_absoluteY="231dp" />
+
+            <Button
+                android:id="@+id/mission2_main"
+                android:tag="mission2"
+                style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="sendMessage"
-                android:text="Start Mission 1"
+                android:clickable="true"
+                android:onClick="gotoMission2"
+                android:text="Start Mission 2"
+                android:textColor="@color/backColor"
+                android:visibility="visible"
                 tools:layout_editor_absoluteX="117dp"
                 tools:layout_editor_absoluteY="231dp" />
         </LinearLayout>

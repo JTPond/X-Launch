@@ -1,15 +1,14 @@
 package com.example.jpond.x_launch;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
-import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.SeekBar;
 
 
@@ -45,10 +44,10 @@ public class AddTimeAction extends AppCompatActivity{
 
                 Double thrVal = (throttle.getProgress())/10.0;
 
-                Run_mission1_Activity.actions.put(Double.valueOf(mTT.getText().toString()),checked.getTag().toString()+":"+thrVal);
+                Run_mission2_Activity.actions.put(Double.valueOf(mTT.getText().toString()),checked.getTag().toString()+":"+thrVal);
 
 
-                Intent intent = new Intent(AddTimeAction.this, Run_mission1_Activity.class);
+                Intent intent = new Intent(AddTimeAction.this, Run_mission2_Activity.class);
                 startActivity(intent);
 
             }
