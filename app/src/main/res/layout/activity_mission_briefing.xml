@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/briefingBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="sendMessage"
+        android:text="Mission Briefing" />
+
+    <TextView
+        android:id="@+id/briefing"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/backColor"
+        android:text="@string/briefing"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="18sp"
+        android:typeface="monospace" />
+</LinearLayout>

@@ -48,6 +48,12 @@ public class Run_mission1_Activity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void sendMessage2(View view)
+    {
+        Intent intent = new Intent(Run_mission1_Activity.this, missionBriefing.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
