@@ -58,6 +58,14 @@
                 <category android:name="android.intent.category.OPENABLE" />
             </intent-filter>
         </activity>
+        <activity android:name=".missionBriefing"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.RUN" />
+
+                <category android:name="android.intent.category.OPENABLE" />
+            </intent-filter>
+        </activity>
 
     </application>
 
