@@ -20,8 +20,7 @@ import static android.os.Build.VERSION.SDK_INT;
 
 public class launch1Activity extends AppCompatActivity {
 
-    private static TreeMap<String,String> progress= new TreeMap<String,String>();
-    private static Boolean current; //true=up-to-date,false=needs-to-be-saved
+    static TreeMap<String,String> progress= new TreeMap<String,String>();
     ArrayList<View> mbuttons = new ArrayList<>();
 
 
@@ -37,32 +36,12 @@ public class launch1Activity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public static void update_progress(String mission, String state){
-        progress.put(mission, state);
-        current = false;
-        progress.put(progress.higherKey(mission),"next");
-    }
-
     public static void completed(String mission){
         progress.put(mission,"completed");
         if (!(progress.lastKey().equals(mission))) {
             progress.put(progress.higherKey(mission), "next");
         }
-        current = false;
-    }
-
-    public void save_progress(){
-        try {
-            FileOutputStream fos = openFileOutput("progress_L1.txt", Context.MODE_PRIVATE);
-            for (String key:progress.keySet()) {
-                String line = key+","+progress.get(key)+";";
-                fos.write(line.getBytes());
-            }
-            fos.close();
-            current=true;
-        } catch (java.io.IOException e){
-            e.printStackTrace();
-        }
+        System.out.println(progress);
     }
 
     public void initial() {
@@ -74,11 +53,10 @@ public class launch1Activity extends AppCompatActivity {
             try {
                 FileOutputStream fos = openFileOutput("progress_L1.txt", Context.MODE_PRIVATE);
                 fos.write("mission1,next;".getBytes());
-                for (Integer i = 1; i <= mbuttons.size(); i++) {
+                for (Integer i = 1; i < mbuttons.size(); i++) {
                     fos.write(("mission" + (i + 1) + ",incomplete;").getBytes());
                 }
                 fos.close();
-                current = false;
             } catch (java.io.IOException e) {
                 e.printStackTrace();
             }
@@ -101,11 +79,10 @@ public class launch1Activity extends AppCompatActivity {
                     String[] cells = line.split(",");
                     progress.put(cells[0], cells[1]);
                 }catch (PatternSyntaxException e){
-
+                    e.printStackTrace();
                 }
             }
             fis.close();
-            current=true;
             for (View b:mbuttons) {
                 if (progress.get(b.getTag().toString()).equals("incomplete") ) {
                     b.setClickable(false);
@@ -121,12 +98,6 @@ public class launch1Activity extends AppCompatActivity {
             }
         } catch (java.io.IOException e) {
             e.printStackTrace();
-        }
-    }
-
-    protected void onSaveInstanceState(Bundle outState){
-        if (current == false){
-            this.save_progress();
         }
     }
 }

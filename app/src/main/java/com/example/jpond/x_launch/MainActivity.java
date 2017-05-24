@@ -21,9 +21,6 @@ import static android.os.Build.VERSION.SDK_INT;
 public class MainActivity extends AppCompatActivity {
 
     private static TreeMap<String,String> progress= new TreeMap<String,String>();
-    private static Boolean current; //true=up-to-date,false=needs-to-be-saved
-    //Button mLaunch1;
-    //Button mLaunch2;
     ArrayList<View> mbuttons = new ArrayList<>();
 
 
@@ -45,30 +42,13 @@ public class MainActivity extends AppCompatActivity {
         //startActivity(intent);
     }
 
-    public static void update_progress(String launch, String state){
-        progress.put(launch, state);
-        current = false;
-        progress.put(progress.higherKey(launch),"next");
-    }
 
     public static void completed(String launch){
         progress.put(launch,"completed");
-        progress.put(progress.lowerKey(launch),"next");
-        current = false;
-    }
-
-    public void save_progress(){
-        try {
-            FileOutputStream fos = openFileOutput("progress.txt", Context.MODE_PRIVATE);
-            for (String key:progress.keySet()) {
-                String line = key+","+progress.get(key)+";";
-                fos.write(line.getBytes());
-            }
-            fos.close();
-            current=true;
-        } catch (java.io.IOException e){
-            e.printStackTrace();
+        if (!(progress.lastKey().equals(launch))) {
+            progress.put(progress.higherKey(launch), "next");
         }
+        System.out.println(progress);
     }
 
     public void initial() {
@@ -84,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
                     fos.write(("launch" + (i + 1) + ",incomplete;").getBytes());
                 }
                 fos.close();
-                current = false;
             } catch (java.io.IOException e) {
                 e.printStackTrace();
             }
@@ -95,8 +74,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //mLaunch1 = (Button) findViewById(R.id.launch1_main);
-        //mLaunch2 = (Button) findViewById(R.id.launch2_main);
         mbuttons = (findViewById(R.id.mainLay)).getTouchables();
         this.initial();
         try {
@@ -113,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             fis.close();
-            current=true;
         for (View b:mbuttons) {
                 if (progress.get(b.getTag().toString()).equals("incomplete") ) {
                     b.setClickable(false);
@@ -132,9 +108,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    protected void onSaveInstanceState(Bundle outState){
-        if (current == false){
-            this.save_progress();
-        }
-    }
 }
