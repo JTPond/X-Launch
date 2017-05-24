@@ -1,4 +1,4 @@
-package com.example.jpond.x_launch;
+package com.example.jpond.x_launch.Launch1;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,9 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.SeekBar;
+import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
+
+import com.example.jpond.x_launch.R;
 
 import static android.os.Build.VERSION.SDK_INT;
 
@@ -18,7 +20,7 @@ import static android.os.Build.VERSION.SDK_INT;
 
 public class Mission1_controls_Activity extends AppCompatActivity{
 
-    SeekBar lunarSpot;
+    DatePicker lunarSpot;
     TimePicker timePick;
     Button submit;
     TextView tv1;
@@ -30,8 +32,7 @@ public class Mission1_controls_Activity extends AppCompatActivity{
 
             @Override
             public void onClick(View v) {
-
-                Run_mission1_Activity.lunarSpot= (double) lunarSpot.getProgress();
+                Run_mission1_Activity.lunarSpot= (double) lunarSpot.getDayOfMonth()*24*60;
                 if (SDK_INT < 23) Run_mission1_Activity.dateMin = (double) ((timePick.getCurrentHour()*60 + timePick.getCurrentMinute()));
                 else if (SDK_INT >= 23) Run_mission1_Activity.dateMin = (double) ((timePick.getHour()*60 + timePick.getMinute()));
 
@@ -41,22 +42,7 @@ public class Mission1_controls_Activity extends AppCompatActivity{
             }
 
         });
-        lunarSpot.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                tv1.setText(Integer.toString(lunarSpot.getProgress()));
-            }
-        });
 
     }
 
@@ -65,12 +51,16 @@ public class Mission1_controls_Activity extends AppCompatActivity{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_controls1);
-        lunarSpot = (SeekBar) findViewById(R.id.mission1_moonDate);
+        lunarSpot = (DatePicker) findViewById(R.id.mission1_moonDate);
         timePick = (TimePicker) findViewById(R.id.mission1_LaunchTime);
         submit = (Button) findViewById(R.id.mission1_submit);
         tv1 = (TextView) findViewById(R.id.mission1_controls_text1);
+        lunarSpot.updateDate(2029,10,1);
         timePick.setIs24HourView(true);
-
+        if (SDK_INT < 23) timePick.setCurrentHour(0);
+        else if (SDK_INT >= 23) timePick.setHour(0);
+        if (SDK_INT < 23) timePick.setCurrentMinute(0);
+        else if (SDK_INT >= 23) timePick.setMinute(0);
         addListenerOnButton();
 
     }

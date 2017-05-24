@@ -25,8 +25,17 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.3"
-        sha1="8a0473c9e2754d3bf48ae8dda293cb9cf6a02bdb">
+        sha1="febf0d490f4aeb399c6b983f882ebecf7af5c8eb">
         <dex dex="/home/jpond/workspace/AndroidStudioProjects/X-Launch/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_2e03cecb34650c9e68106b606f3ca8c42cb1689c/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/jpond/workspace/AndroidStudioProjects/X-Launch/app/libs/jblas-1.2.4.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="ad0ce7fa26f388604878c893eaeda964b0a47cde">
+        <dex dex="/home/jpond/workspace/AndroidStudioProjects/X-Launch/app/build/intermediates/pre-dexed/debug/jblas-1.2.4_ca139178a5305fb0b2ee5f5b9463019663cc0ced.jar" />
     </item>
 
 </items>

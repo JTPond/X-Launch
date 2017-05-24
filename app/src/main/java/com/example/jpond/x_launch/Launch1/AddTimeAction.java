@@ -1,4 +1,4 @@
-package com.example.jpond.x_launch;
+package com.example.jpond.x_launch.Launch1;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
+
+import com.example.jpond.x_launch.R;
 
 
 /**

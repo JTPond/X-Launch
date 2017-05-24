@@ -1,4 +1,4 @@
-package com.example.jpond.x_launch;
+package com.example.jpond.x_launch.Launch1;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.example.jpond.x_launch.Launch1.launch1Activity;
+import com.example.jpond.x_launch.R;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,48 +18,42 @@ import java.util.regex.PatternSyntaxException;
 
 import static android.os.Build.VERSION.SDK_INT;
 
-public class MainActivity extends AppCompatActivity {
+public class launch1Activity extends AppCompatActivity {
 
     private static TreeMap<String,String> progress= new TreeMap<String,String>();
     private static Boolean current; //true=up-to-date,false=needs-to-be-saved
-    //Button mLaunch1;
-    //Button mLaunch2;
     ArrayList<View> mbuttons = new ArrayList<>();
 
 
-    public void gotoLaunch1(View view)
+    public void gotoMission1(View view)
     {
-        Intent intent = new Intent(MainActivity.this, launch1Activity.class);
+        Intent intent = new Intent(launch1Activity.this, Run_mission1_Activity.class);
         startActivity(intent);
     }
 
-    public void gotoLaunch2(View view)
+    public void gotoMission2(View view)
     {
-        //Intent intent = new Intent(MainActivity.this, launch2Activity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(launch1Activity.this, Run_mission2_Activity.class);
+        startActivity(intent);
     }
 
-    public void gotoLaunch3(View view)
-    {
-        //Intent intent = new Intent(MainActivity.this, launch3Activity.class);
-        //startActivity(intent);
-    }
-
-    public static void update_progress(String launch, String state){
-        progress.put(launch, state);
+    public static void update_progress(String mission, String state){
+        progress.put(mission, state);
         current = false;
-        progress.put(progress.higherKey(launch),"next");
+        progress.put(progress.higherKey(mission),"next");
     }
 
-    public static void completed(String launch){
-        progress.put(launch,"completed");
-        progress.put(progress.lowerKey(launch),"next");
+    public static void completed(String mission){
+        progress.put(mission,"completed");
+        if (!(progress.lastKey().equals(mission))) {
+            progress.put(progress.higherKey(mission), "next");
+        }
         current = false;
     }
 
     public void save_progress(){
         try {
-            FileOutputStream fos = openFileOutput("progress.txt", Context.MODE_PRIVATE);
+            FileOutputStream fos = openFileOutput("progress_L1.txt", Context.MODE_PRIVATE);
             for (String key:progress.keySet()) {
                 String line = key+","+progress.get(key)+";";
                 fos.write(line.getBytes());
@@ -74,14 +68,14 @@ public class MainActivity extends AppCompatActivity {
     public void initial() {
         Boolean found = false;
         for (File file:getFilesDir().listFiles()){
-            if (file.getName().equals("progress.txt")) found = true;
+            if (file.getName().equals("progress_L1.txt")) found = true;
         }
         if (!found) {
             try {
-                FileOutputStream fos = openFileOutput("progress.txt", Context.MODE_PRIVATE);
-                fos.write("launch1,next;".getBytes());
+                FileOutputStream fos = openFileOutput("progress_L1.txt", Context.MODE_PRIVATE);
+                fos.write("mission1,next;".getBytes());
                 for (Integer i = 1; i <= mbuttons.size(); i++) {
-                    fos.write(("launch" + (i + 1) + ",incomplete;").getBytes());
+                    fos.write(("mission" + (i + 1) + ",incomplete;").getBytes());
                 }
                 fos.close();
                 current = false;
@@ -94,13 +88,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        //mLaunch1 = (Button) findViewById(R.id.launch1_main);
-        //mLaunch2 = (Button) findViewById(R.id.launch2_main);
-        mbuttons = (findViewById(R.id.mainLay)).getTouchables();
+        setContentView(R.layout.activity_launch1);
+        mbuttons = (findViewById(R.id.launch1Lay)).getTouchables();
         this.initial();
         try {
-            FileInputStream fis = openFileInput("progress.txt");
+            FileInputStream fis = openFileInput("progress_L1.txt");
             Scanner s = new Scanner(fis);
             s.useDelimiter(";");
             while (s.hasNext()){
@@ -114,19 +106,19 @@ public class MainActivity extends AppCompatActivity {
             }
             fis.close();
             current=true;
-        for (View b:mbuttons) {
+            for (View b:mbuttons) {
                 if (progress.get(b.getTag().toString()).equals("incomplete") ) {
                     b.setClickable(false);
-                    if (SDK_INT >= 23) b.setBackgroundColor(getResources().getColor(R.color.incomplete,this.getTheme()));
+                    if (SDK_INT >= 23) b.setBackgroundColor(getResources().getColor(R.color.incomplete,getTheme()));
                     else if (SDK_INT < 23) b.setBackgroundColor(getResources().getColor(R.color.incomplete));
 
                 }
-                else if (progress.get(b.getTag().toString()).equals("complete") ){
-                    if (SDK_INT >= 23) b.setBackgroundColor(getResources().getColor(R.color.complete,this.getTheme()));
+                else if (progress.get(b.getTag().toString()).equals("completed") ){
+                    if (SDK_INT >= 23) b.setBackgroundColor(getResources().getColor(R.color.complete,getTheme()));
                     else if (SDK_INT < 23) b.setBackgroundColor(getResources().getColor(R.color.complete));
 
                 }
-        }
+            }
         } catch (java.io.IOException e) {
             e.printStackTrace();
         }

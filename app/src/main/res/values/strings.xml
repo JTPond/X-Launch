@@ -3,7 +3,7 @@
 
     <string name="mission1_text1"></string>
 
-    <string name="mission1_controls_text11">Choose Time of Lunar Orbit (Minutes)</string>
+    <string name="mission1_controls_text11">Choose Date of Launch</string>
 
     <string name="mission1_controls_text21">Choose Time of Launch</string>
 
@@ -15,10 +15,12 @@
 
     <string name="addTaETh">Time (Sec)</string>
 
-    <string name="briefing1">In this mission you will be expected to pick the exact time and date for a launch of the Saturn V rocket that will put it in orbit around the moon.
-    Assume that the moon has an orbit of exactly 27 days and that at midnight 00:00 it is directly over the launch site.
-        You will need to launch at a time that will put you in the vicinity of the moon 51 hours and 49 minutes later.
-    Can you do it?
+    <string name="briefing1">\t It is October 2029, the Saturn V rocket is being recommissioned to go to the moon, once again. You are a lowly Neo-NASA tech, and you have to make decisions about the launch,
+        because your bosses are just to lazy. Typical.\n\n
+        In this mission you will be expected to pick the exact time and date for a launch of the Saturn V rocket that will put it in orbit around the moon, next month.\n\n
+    Assume that the moon has an orbit of exactly 27 days and that at midnight 00:00 on the first of November it will be directly over the launch site.
+        You will need to launch at a time that will put you in the vicinity of the moon 51 hours and 49 minutes after the launch.\n\n
+        Can you do it?
     Don\'t think too hard; it\'s only rocket science.</string>
 
 </resources>

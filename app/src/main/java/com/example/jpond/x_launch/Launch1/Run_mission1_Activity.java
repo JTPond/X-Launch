@@ -1,4 +1,4 @@
-package com.example.jpond.x_launch;
+package com.example.jpond.x_launch.Launch1;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,12 +7,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.jpond.x_launch.R;
+
+import static android.os.Build.VERSION.SDK_INT;
+
 public class Run_mission1_Activity extends AppCompatActivity {
 
     static TextView mOut;
     Button mbrief;
     Button mcontrols;
     Button mignition;
+    Button mNext;
     public static Double lunarSpot;
     public static Double dateMin;
 
@@ -29,12 +34,18 @@ public class Run_mission1_Activity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void next(View view)
+    {
+        Intent intent = new Intent(Run_mission1_Activity.this, launch1Activity.class);
+        startActivity(intent);
+    }
     public Integer run(){
         if (dateMin < 540.0) return 0;
         else if (dateMin > 1140.0) return 1;
         Double e2m = 38880.0/1440.0;
-        if (dateMin*e2m - lunarSpot > 3111) return 2;
-        else if (dateMin*e2m - lunarSpot < 3107) return 3;
+        System.out.println(dateMin*e2m - lunarSpot);
+        if (dateMin*e2m - lunarSpot > 3136) return 2;
+        else if (dateMin*e2m - lunarSpot < 3082) return 3;
         return 4;
     }
 
@@ -46,6 +57,7 @@ public class Run_mission1_Activity extends AppCompatActivity {
         mbrief = (Button) findViewById(R.id.mission1_brief);
         mcontrols = (Button) findViewById(R.id.mission1_controls);
         mignition = (Button) findViewById(R.id.mission1_ignition);
+        mNext = (Button) findViewById(R.id.mission1_next);
 
         mignition.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,8 +78,11 @@ public class Run_mission1_Activity extends AppCompatActivity {
                 }
                 else if (result == 4){
                     mOut.setText(R.string.mission1_result5);
-                    //MainActivity.completed("mission1");
-                    //Intent intent = new Intent(Run_mission1_Activity.this, MainActivity.class);
+                    launch1Activity.completed("mission1");
+                    if (SDK_INT >= 23) mNext.setTextColor(getResources().getColor(R.color.backColor,getTheme()));
+                    else if (SDK_INT < 23) mNext.setTextColor(getResources().getColor(R.color.backColor));
+                    mNext.setClickable(true);
+                    //Intent intent = new Intent(Run_mission1_Activity.this, launch1Activity.class);
                     //startActivity(intent);
                 }
             }

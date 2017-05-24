@@ -38,6 +38,16 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ignition"
+        android:text="Check"
         android:textColor="@color/backColor" />
+
+    <Button
+        android:id="@+id/mission1_next"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="next"
+        android:text="Next"
+        android:textColor="@color/colorAccent"
+        android:clickable="false"/>
 </LinearLayout>
